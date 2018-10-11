@@ -1,6 +1,6 @@
 # JFXNodeMapper
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/CaptainParanoid/JFXNodeMapper)
+[![Build Status](https://user-images.githubusercontent.com/7784660/42061581-02169b84-7b2b-11e8-9349-fb2e2c8800f5.png)](https://github.com/CaptainParanoid/JFXNodeMapper)
 
 JFXNodeMapper is a simple library that focuses on mapping data from common data represntation formats to JavaFx Nodes. Our main focus is to build a library that,
 
