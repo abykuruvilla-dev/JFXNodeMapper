@@ -28,42 +28,41 @@ JFXNodeMapper is a simple library that focuses on mapping data from common data 
   - Pass data source.
   - See the Magic
   
-# Example
+# Examples
 
-/** Example 1 : Mapping from a JSON string*/
-
+* Mapping from a JSON string
+```java
 Scene scene = parent.getScene();
-Node root=   scene.getRoot();
-DataMapper mapper =new DataMapper();
+Node root = scene.getRoot();
+DataMapper mapper = new DataMapper();
 mapper.setRoot(root);
-String json=getJsonFromServer();
-mapper.setDataFromJSON(json);// json keys and root ids shoudl match;
+String json = getJsonFromServer();
+mapper.setDataFromJSON(json); // json keys and root ids should match
+```
 
+* Mapping from a ResultSet object
+```java
+Scene scene = parent.getScene();
+Node root = scene.getRoot();
+DataMapper mapper = new DataMapper();
+mapper.setRoot(root);
+Resulset resultset = getAllStudentDetails();
+mapper.setDataFromJSON(resultSet); //column name and root ids should match
+```
 
-/** Example 1 : Mapping from a ResultSet object*/
-
-Scene scene2 = parent2.getScene();
-Node root2=   scene2.getRoot();
-DataMapper mapper2 =new DataMapper();
-mapper2.setRoot(root2);
-Resulset resultset=getAllStudentDetails();
-mapper2.setDataFromJSON(resultSet);//column name and root ids should match;
-
-
-
-** Example 1 : Mapping from json String with Custom mapping*
-
-Scene scene3 = parent3.getScene();
-Node root3=   scene.getRoot();
-DataMapper mapper3 =new DataMapper();
-mapper3.setRoot(root3);
-String json2=getJsonFromServer();
-//this listner will be called whenever the specified id is encountered.
-//this will override all other mappings for the specified id
-mapper3.mapToCustomDataType("subject-combo", (data, id, node) ->
-            ComboBox<String> subs=(ComboBox<String>) node;
-            String subject=(String) data;
-            subs.getItems.add(subject);
-        });
-mapper3.setDataFromJSON(json);// json keys and root ids shoudl match;
-
+* Mapping from JSON string with custom mapping
+```java
+Scene scene = parent.getScene();
+Node root = scene.getRoot();
+DataMapper mapper = new DataMapper();
+mapper.setRoot(root);
+String json = getJsonFromServer();
+// this listner will be called whenever the specified id is encountered.
+// this will override all other mappings for the specified id
+mapper.mapToCustomDataType("subject-combo", (data, id, node) -> {
+  ComboBox<String> subs = (ComboBox<String>) node;
+  String subject = (String)data;
+  subs.getItems.add(subject);
+});
+mapper.setDataFromJSON(json); // JSON keys and root ids should match
+```
