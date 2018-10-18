@@ -64,7 +64,7 @@ public class DataMapper {
      * @param csv JSON String supplied by the user.
      *refer  en.wikipedia.org/wiki/Comma-separated_values
      */
-    public void assignDataFromCSV(@NotNull String csv) {
+    public void setDataFromCSV(@NotNull String csv) {
         //ToDO assign data to fields from csv string
         throw new UnsupportedOperationException("Not yet supported by library");
     }

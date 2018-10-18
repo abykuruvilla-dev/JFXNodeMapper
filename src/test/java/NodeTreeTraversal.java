@@ -1,6 +1,7 @@
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -21,6 +22,7 @@ public class NodeTreeTraversal {
     private CheckBox checkBox;
     private RadioButton radioButton;
     private TabPane tabPane;
+    private TreeTableView<String> treeView;
     private Tab tab;
 
     NodeTreeTraversal() {
@@ -66,26 +68,55 @@ public class NodeTreeTraversal {
         tabPane.setId("");
         tab = new Tab();
         tab.setId("tab");
-
+        treeView =new TreeTableView<>();
+        treeView.setRoot(new TreeItem<>("hellooo"));
+        treeView.setId("tree-view");
+        makeANastyUi();
     }
 
-    public void test() throws Exception {
-        Node parentNode = makeANastyUi();
+    public void testTraversal() {
         NodeMapper mapper = new NodeMapper();
-        mapper.setRoot(parentNode);
+        mapper.setRoot(stackpane);
         HashMap<String, Node> map = mapper.getMap();
         System.out.println("IDs Found");
         for (String key : map.keySet()) {
             System.out.println(key);
         }
     }
+    public void testDataAssignment(){
+        DataMapper mapper =new DataMapper();
+        mapper.setRoot(stackpane);
+        mapper.mapToCustomDataType(treeView.getId(), (data, id, node) -> {
+            System.out.println(data);
+            System.out.println(id);
+        });
+        JSONObject object=new JSONObject();
+        object.put(label1.getId(),"hello label 1");
+        object.put(label2.getId(),"hello label 2");
+        object.put(label3.getId(),"hello label 3");
+        object.put(noButton.getId(),"hello no button");
+        object.put(yesButton.getId(),"hello yes button");
+        object.put(cancelButton.getId(),"hello cancel button");
+        object.put(treeView.getId(),"hello tree view with custom map");
+        object.put(checkBox.getId(),true);
+        object.put(radioButton.getId(),true);
+        mapper.setDataFromJSON(object.toString());
+        System.out.println(label1.getText());
+        System.out.println(label2.getText());
+        System.out.println(label3.getText());
+        System.out.println(noButton.getText());
+        System.out.println(yesButton.getText());
+        System.out.println(cancelButton.getText());
+        System.out.println(checkBox.isSelected());
+        System.out.println(radioButton.isSelected());
+    }
 
-    private Node makeANastyUi() {
+    private void makeANastyUi() {
         ButtonBar.setButtonData(yesButton, ButtonBar.ButtonData.YES);
         ButtonBar.setButtonData(noButton, ButtonBar.ButtonData.NO);
         ButtonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE);
         buttonBar.getButtons().addAll(yesButton, noButton, cancelButton);
-        vbox.getChildren().addAll(buttonBar, comboBox, datePicker);
+        vbox.getChildren().addAll(buttonBar, comboBox, datePicker,treeView);
         hbox.getChildren().addAll(label1, checkBox, label2, radioButton, label3);
         scrollPane.setContent(anchorPane);
         tab.setContent(scrollPane);
@@ -95,7 +126,6 @@ public class NodeTreeTraversal {
         accordion.getPanes().addAll(titledPane);
         borderPane.setLeft(accordion);
         stackpane.getChildren().addAll(borderPane, tabPane);
-        return stackpane;
     }
 
 }
