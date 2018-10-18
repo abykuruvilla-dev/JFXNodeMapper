@@ -36,7 +36,7 @@ public class NodeMapper {
     }
 
     private void mapNode(@NotNull Node root) {
-        if (isVisitLimit(root)) {
+        if (!isVisitLimit(root)) {
             if (root instanceof Pane) {
                 mapPane((Pane) root);
             } else if (root instanceof Control) {
