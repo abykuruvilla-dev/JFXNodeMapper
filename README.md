@@ -47,7 +47,7 @@ Node root = scene.getRoot();
 DataMapper mapper = new DataMapper();
 mapper.setRoot(root);
 Resulset resultset = getAllStudentDetails();
-mapper.setDataFromJSON(resultSet); //column name and root ids should match
+mapper.setDataFromResultSet(resultSet); //column name and root ids should match
 ```
 
 * Mapping from JSON string with custom mapping
