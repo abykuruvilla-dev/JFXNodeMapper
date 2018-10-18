@@ -37,7 +37,7 @@ Node root = scene.getRoot();
 DataMapper mapper = new DataMapper();
 mapper.setRoot(root);
 String json = getJsonFromServer();
-mapper.setDataFromJSON(json); // json keys and root ids should match
+mapper.setDataFromJSON(json); // json keys and node ids should match
 ```
 
 * Mapping from a ResultSet object
@@ -47,7 +47,7 @@ Node root = scene.getRoot();
 DataMapper mapper = new DataMapper();
 mapper.setRoot(root);
 Resulset resultset = getAllStudentDetails();
-mapper.setDataFromResultSet(resultSet); //column name and root ids should match
+mapper.setDataFromResultSet(resultSet); //column name and node ids should match
 ```
 
 * Mapping from JSON string with custom mapping
@@ -64,5 +64,5 @@ mapper.mapToCustomDataType("subject-combo", (data, id, node) -> {
   String subject = (String)data;
   subs.getItems.add(subject);
 });
-mapper.setDataFromJSON(json); // JSON keys and root ids should match
+mapper.setDataFromJSON(json); // JSON keys and node ids should match
 ```
