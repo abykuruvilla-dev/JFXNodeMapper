@@ -37,6 +37,7 @@ public class NodeMapper {
 
     private void mapNode(@NotNull Node root) {
         if (!isVisitLimit(root)) {
+            addVisit(root);
             if (root instanceof Pane) {
                 mapPane((Pane) root);
             } else if (root instanceof Control) {
@@ -184,6 +185,15 @@ public class NodeMapper {
             }
         }
         return false;
+    }
+    private void addVisit(Node node){
+        if(visitedNodes.containsKey(node)){
+            int count=visitedNodes.get(node);
+            count++;
+            visitedNodes.put(node,count);
+        }else{
+            visitedNodes.put(node,1);
+        }
     }
 
     public void setMaxNodeVisit(int count) {
