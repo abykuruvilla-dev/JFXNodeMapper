@@ -27,8 +27,8 @@ JFXNodeMapper is a simple library that focuses on mapping data from common data 
   - Pass the root node or parent node that contains the required fields to be mapped.
   - Pass data source.
   - See the Magic
-  - 
-  # Example
+  
+# Example
 
 /** Example 1 : Mapping from a JSON string*/
 
